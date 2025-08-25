@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculator • Tailwind</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <style>
+    /* Button Styling */
+    button {
+      outline: none;
+      cursor: pointer;
+      border: none;
+      padding: 0.9rem;
+      font-family: inherit;
+      font-size: 17px;
+      font-weight: 700;
+      border-radius: 12px;
+      background: #f2d813;
+      color: ghostwhite;
+      position: relative;
+      overflow: hidden;
+    }
+    button span {
+      position: relative;
+      z-index: 10;
+      transition: color 0.3s;
+    }
+    button:hover span {
+      color: black;
+    }
+    button::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 120%; height: 100%;
+      background: #000;
+      transform: skew(30deg);
+      transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+      z-index: 0;
+    }
+    button:hover::before {
+      transform: translate3d(100%, 0, 0);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-yellow-300 flex items-center justify-center p-4">
+
+
+  <main class="bg-white w-96 rounded-2xl shadow-2xl p-4">
+        <h1 class="text-center text-2xl font-bold text-black-600 mb-4">Simple Calculator</h1>
+
+    <!-- Display -->
+    <input 
+      id="result"
+      class="bg-black text-white text-right text-3xl p-4 rounded-lg mb-4 w-full"
+      
+    >
+
+    <!-- Buttons Grid -->
+    <div class="grid grid-cols-4 gap-3 text-lg font-semibold">
+      
+      <!-- Row 1 -->
+      <button class="col-span-2" onclick="clearText()"><span>AC</span></button>
+      <button onclick="lastDigit()"><span>DEL</span></button>
+      <button onclick="displayNumber('%')"><span>%</span></button>
+      
+      <!-- Row 2 -->
+      <button onclick="displayNumber('7')"><span>7</span></button>
+      <button onclick="displayNumber('8')"><span>8</span></button>
+      <button onclick="displayNumber('9')"><span>9</span></button>
+      <button onclick="displayNumber('*')"><span>x</span></button>
+      
+      <!-- Row 3 -->
+      <button onclick="displayNumber('4')"><span>4</span></button>
+      <button onclick="displayNumber('5')"><span>5</span></button>
+      <button onclick="displayNumber('6')"><span>6</span></button>
+      <button onclick="displayNumber('-')"><span>-</span></button>
+      
+      <!-- Row 4 -->
+      <button onclick="displayNumber('1')"><span>1</span></button>
+      <button onclick="displayNumber('2')"><span>2</span></button>
+      <button onclick="displayNumber('3')"><span>3</span></button>
+      <button onclick="displayNumber('+')"><span>+</span></button>
+      
+      <!-- Row 5 -->
+      <button class="col-span-2" onclick="displayNumber('0')"><span>0</span></button>
+      <button onclick="displayNumber('.')"><span>.</span></button>
+      <button onclick="calculation()"><span>=</span></button>
+      
+    </div>
+  </main>
+
+  <!-- External JS file -->
+  <script src="script.js"></script>
+</body>
+</html>
